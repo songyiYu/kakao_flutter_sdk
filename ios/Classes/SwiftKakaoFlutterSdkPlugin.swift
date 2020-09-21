@@ -99,18 +99,19 @@ public class SwiftKakaoFlutterSdkPlugin: NSObject, FlutterPlugin, ASWebAuthentic
             keepMe = nil
 
             if let err = err {
-                if #available(iOS 12, *) {
-                    if case ASWebAuthenticationSessionError.Code.canceledLogin = err {
-                        result(FlutterError(code: "CANCELED", message: "User canceled login.", details: nil))
-                        return
-                    }
-                } else {
-                    if case SFAuthenticationError.Code.canceledLogin = err {
-                        result(FlutterError(code: "CANCELED", message: "User canceled login.", details: nil))
-                        return
-                    }
-                }
-                result(FlutterError(code: "EUNKNOWN", message: err.localizedDescription, details: nil))
+            //    if #available(iOS 12, *) {
+            //        if case ASWebAuthenticationSessionError.Code.canceledLogin = err {
+            //            result(FlutterError(code: "CANCELED", message: "User canceled login.", details: nil))
+            //            return
+            //        }
+            //    } else {
+            //        if case SFAuthenticationError.Code.canceledLogin = err {
+            //            result(FlutterError(code: "CANCELED", message: "User canceled login.", details: nil))
+            //            return
+            //        }
+            //    }
+            //    result(FlutterError(code: "EUNKNOWN", message: err.localizedDescription, details: nil))
+                result(FlutterError(code: "kakao_sign_in", message: err.localizedDescription, details: nil))
                 return
             }
             result(url?.absoluteString)
